@@ -17,7 +17,7 @@ class InventoryTest : BaseTest() {
         assertThat(inventory.cartBadge).hasText("1")
     }
 
-    @Disabled("FIXME BUG-001: sorting by price does not work for problem_user")
+    @Disabled("Intentional defect: problem_user has broken sorting by design (Sauce Demo test account)")
     @Test
     fun `sorting by price low to high works for problem user`() {
         val inventory = LoginPage(page).open().login(Config.problemUser, Config.password)
