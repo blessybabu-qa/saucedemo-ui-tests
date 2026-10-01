@@ -1,6 +1,6 @@
 # Sauce Demo UI Test Automation
 
-[![UI Tests](https://github.com/blessybabu-qa/saucedemo-ui-tests/actions/workflows/tests.yml/badge.svg)](https://github.com/blessybabu-qa/saucedemo-ui-tests/actions/workflows/tests.yml)
+[![UI Tests](https://github.com/blessybabu-qa/saucedemo-ui-tests/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/blessybabu-qa/saucedemo-ui-tests/actions/workflows/tests.yml)
 
 UI test automation framework for the [Sauce Demo](https://www.saucedemo.com) web shop,
 written in **Kotlin** with **Playwright**, built with **Maven**, runnable in **Docker**
