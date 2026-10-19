@@ -4,7 +4,7 @@
 
 UI test automation framework for the [Sauce Demo](https://www.saucedemo.com) web shop,
 written in **Kotlin** with **Playwright**, built with **Maven**, runnable in **Docker**
-and executed in **GitHub Actions**.
+and **WSL**, and executed in **GitHub Actions**.
 
 ## Tech stack
 
@@ -103,6 +103,29 @@ docker run --rm --env-file .env -e HEADLESS=true saucedemo-tests
 docker run --rm --env-file .env -e HEADLESS=true -e BROWSER=firefox saucedemo-tests
 ```
 
+**WSL (Ubuntu on Windows)**
+
+Runs the suite on Linux without Docker, the same OS the CI uses.
+
+One-time setup in the Ubuntu terminal:
+```
+sudo apt update
+sudo apt install -y openjdk-21-jdk maven
+git clone https://github.com/blessybabu-qa/saucedemo-ui-tests.git ~/saucedemo-ui-tests
+cd ~/saucedemo-ui-tests
+mvn -B test-compile
+mvn -B exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.classpathScope=test -Dexec.args="install --with-deps chromium"
+```
+
+Then create the `.env` file as described in [Setup](#setup), or copy it from the Windows
+copy of the project, e.g. `cp /mnt/c/<path-to-project>/.env .`
+
+Run the tests:
+```
+cd ~/saucedemo-ui-tests
+mvn test
+```
+
 ## Continuous integration
 
 Every push and pull request runs the suite in GitHub Actions. Credentials are stored as
@@ -114,6 +137,7 @@ tests fail.
 All 8 tests (7 passed, 1 skipped) verified on:
 - Windows 11 (IntelliJ IDEA)
 - Ubuntu Linux (Docker, `mcr.microsoft.com/playwright/java:v1.52.0-noble`)
+- Ubuntu 24.04 on WSL2 (Windows 11)
 
 ## Intentional defect: sorting for `problem_user`
 
